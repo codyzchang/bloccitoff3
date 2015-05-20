@@ -1,4 +1,7 @@
 <h1>Items</h1>
+<% if policy(Item.new).create? %>
+<%= link_to "New Item", new_item_path, class: 'btn btn-success' %>
+<% end %>
 <% @items.each do |item| %>
    <div class="media">
      <div class="media-body">

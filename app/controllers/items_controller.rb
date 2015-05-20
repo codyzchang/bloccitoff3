@@ -11,16 +11,16 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-     authorize @item
+    authorize @item
   end
 
   def edit
     @item = Item.find(params[:id])
-     authorize @item
+    authorize @item
   end
  
    def create
-     @item = Item.new(params.require(:item).permit(:name, :description, :public))
+     @item = Item.new(params.require(:item).permit(:title))
      authorize @item
      if @item.save
        redirect_to @item, notice: "Item was saved successfully."
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
    def update
      @item = Item.find(params[:id])
      authorize @item
-     if @item.update_attributes(params.require(:item).permit(:name, :description, :public))
+     if @item.update_attributes(params.require(:item).permit(:title))
        redirect_to @item
      else
        flash.now[:error] = "Error saving item. Please try again."
