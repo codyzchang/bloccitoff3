@@ -4,7 +4,7 @@
       <div class="media-body">
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
-          <%= pluralize(@user.items.count, 'items') %>,
+          <div class='js-comments-count'><%= pluralize(@user.items.count, 'items') %></div>
           </small>
       </div>
     </div>
