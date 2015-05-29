@@ -1,13 +1,13 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-      <%= link_to (markdown item.title), item %>
+      <%= link_to item.title, item %>
       <%= link_to "Delete", item, method: :delete, remote: true, class: 'glyphicon glyphicon-ok' %>
     </h4>
     <small>
       Submitted <%= time_ago_in_words(item.created_at) %> ago by
       <%= item.user.name %><br/>
-      <%= item.count %> Items
+      <%= user.items.count %> Items
     </small>
   </div>
 </div>
