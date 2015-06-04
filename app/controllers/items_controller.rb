@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
  
    def create
      @item = Item.new(params.require(:item).permit(:title))
+     @item.user = current_user
      authorize @item
      if @item.save
        redirect_to @item, notice: "Item was saved successfully."
@@ -39,6 +40,7 @@ class ItemsController < ApplicationController
        flash.now[:error] = "Error saving item. Please try again."
        render :edit
      end
+   end
 
    def destroy
      @item = Item.find(params[:id])
@@ -46,10 +48,8 @@ class ItemsController < ApplicationController
 
      if @item.destroy
        flash.now[:notice] = "Item was removed."
-       redirect_to @item
      else
        flash.now[:error] = "Item couldn't be deleted. Try again."
-       redirect_to @item
      end
 
      respond_to do |format|
@@ -58,4 +58,4 @@ class ItemsController < ApplicationController
      end
    end
    end
-end
+
